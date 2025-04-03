@@ -1,0 +1,55 @@
+{% block my_first_page %}
+<sw-page class="my-first-page">
+    <template slot="content">
+        <sw-card title="Dummy Users" :isLoading="false">
+            <sw-data-grid
+                :columns="columns"
+                :dataSource="users"
+                :showSelection="false"
+                :showActions="true">
+                
+                <template #actions="{ item }">
+                    <sw-context-menu-item @click="onViewDetails(item)">
+                        View details
+                    </sw-context-menu-item>
+                </template>
+                
+                <template #column-status="{ item }">
+                    <sw-label :variant="item.status === 'active' ? 'success' : 'danger'">
+                        {{ item.status }}
+                    </sw-label>
+                </template>
+            </sw-data-grid>
+        </sw-card>
+        
+        <sw-modal v-if="showUserDetails" :title="selectedUser.name + ' Details'" @modal-close="closeUserDetails">
+            <sw-description-list>
+                <dt>ID</dt>
+                <dd>{{ selectedUser.id }}</dd>
+                
+                <dt>Name</dt>
+                <dd>{{ selectedUser.name }}</dd>
+                
+                <dt>Email</dt>
+                <dd>{{ selectedUser.email }}</dd>
+                
+                <dt>Status</dt>
+                <dd>
+                    <sw-label :variant="selectedUser.status === 'active' ? 'success' : 'danger'">
+                        {{ selectedUser.status }}
+                    </sw-label>
+                </dd>
+                
+                <dt>Created At</dt>
+                <dd>{{ selectedUser.createdAt }}</dd>
+            </sw-description-list>
+            
+            <template #modal-footer>
+                <sw-button @click="closeUserDetails" size="small">
+                    Close
+                </sw-button>
+            </template>
+        </sw-modal>
+    </template>
+</sw-page>
+{% endblock %}

@@ -1,0 +1,21 @@
+{
+    "name": "my/first-plugin",
+    "description": "My First Plugin",
+    "type": "shopware-platform-plugin",
+    "license": "TBD",
+    "autoload": {
+      "psr-4": {
+        "MyFirstPlugin\\": "src/"
+      }
+    },
+    "extra": {
+      "shopware-plugin-class": "MyFirstPlugin\\MyFirstPlugin",
+      "label": {
+            "en-GB": "My First Plugin"
+        },
+        "description": {
+            "en-GB": "Description of my first plugin"
+        }
+    }
+    
+  }
